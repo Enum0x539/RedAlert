@@ -23,7 +23,7 @@ private static void RedAlertReceived(List<AlertCityData> cities)
 {
     //With every new alert, this function will gets to execute.
     
-    //Converting the time to the universal time and add 3 hours to get the current time in Israel.
+    //Converting the time to the universal time and adds 3 hours to get the current time in Israel.
     DateTime occurence = DateTime.Now.ToUniversalTime().AddHours(3);
     List<string> zones = new List<string>();
     List<string> descriptions = new List<string>();
