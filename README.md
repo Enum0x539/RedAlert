@@ -1,15 +1,15 @@
 # RedAlert
 Israel's Real-time red alerts library, written in C#.
 
-# About the library
+## About the library
 RedAlert is a library that synchronizing with Israel Home Front Command to get the alerts in real-time,
 the library interface is user-friendly so everyone can use it easily.
 
 ## Contacts
-**Discord:** Enum#6690
+**Discord:** Enum#6690 <br>
 **Instagram:** yenon_k11
 
-# Exmaple code
+## Exmaple code
 ```cs
 using RedAlert;
 
