@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
@@ -13,21 +14,15 @@ namespace RedAlert
     {
         public static string CitiesJson = "";
         public static List<AlertCityData> alertCities = new List<AlertCityData>();
+        private static byte[] bArray = new byte[57]{ 0x75, 0x67, 0x67, 0x63, 0x66, 0x3a, 0x2f, 0x2f, 0x6a, 0x6a, 0x6a, 0x2e, 0x62, 0x65, 0x72, 0x73, 0x2e, 0x62, 0x65, 0x74, 0x2e, 0x76, 0x79, 0x2f, 0x4a, 0x6e, 0x65, 0x61, 0x76, 0x61, 0x74, 0x5a, 0x72, 0x66, 0x66, 0x6e, 0x74, 0x72, 0x66, 0x2f, 0x4e, 0x79, 0x72, 0x65, 0x67, 0x2f, 0x6e, 0x79, 0x72, 0x65, 0x67, 0x66, 0x2e, 0x77, 0x66, 0x62, 0x61 };
 
         public delegate void AlertReceivedEventHandler(List<AlertCityData> cities);
         public static event AlertReceivedEventHandler OnAlertReceived;
 
-        private static void DownloadFile(string link, string path)
-        {
-            WebClient wb = new WebClient();
-            wb.Headers.Add("User-Agent", "TyarZHDSbUdJVoHhvvcw6dUa8bQkURMXAhj9pxChX4J68Lt2a98gP625uDJA");
-            wb.DownloadFile(link, path);
-        }
-
         public static void Setup(AlertReceivedEventHandler eventHandler)
         {
             if (!File.Exists("Database\\cities.json"))
-                DownloadFile("https://cdn.discordapp.com/attachments/825091638782459912/843166842016366612/cities.json", "Database\\cities.json");
+                Functions.DownloadFile("https://cdn.discordapp.com/attachments/825091638782459912/843166842016366612/cities.json", "Database\\cities.json");
 
             CitiesJson = File.ReadAllText("Database\\cities.json");
 
@@ -56,14 +51,11 @@ namespace RedAlert
                     {
                         try
                         {
-                            httpRequest.AddHeader("X-Requested-With", "XMLHttpRequest");
-                            httpRequest.AddHeader("Referer", "https://www.oref.org.il/");
-                            response = httpRequest.Get("https://www.oref.org.il/WarningMessages/Alert/alerts.json");
+                            httpRequest.AddHeader(Functions.Foo("K-Erdhrfgrq-Jvgu"), Functions.Foo("KZYUggcErdhrfg"));
+                            httpRequest.AddHeader(Functions.Foo("Ersrere"), Functions.Foo("https://www.oref.org.il/"));
+                            response = httpRequest.Get(Functions.Foo(Encoding.Default.GetString(bArray)));
                         }
                         catch { continue; }
-
-                        if (response == null)
-                            continue;
 
                         if (String.IsNullOrEmpty(response.ToString()))
                             continue;
@@ -114,6 +106,21 @@ namespace RedAlert
                 }
             });
             thread.Start();
+        }
+    }
+
+    class Functions
+    {
+        public static void DownloadFile(string link, string path)
+        {
+            WebClient wb = new WebClient();
+            wb.Headers.Add("User-Agent", "TyarZHDSbUdJVoHhvvcw6dUa8bQkURMXAhj9pxChX4J68Lt2a98gP625uDJA");
+            wb.DownloadFile(link, path);
+        }
+
+        public static string Foo(string input)
+        {
+            return !string.IsNullOrEmpty(input) ? new string(input.Select(x => (x >= 'a' && x <= 'z') ? (char)((x - 'a' + 13) % 26 + 'a') : ((x >= 'A' && x <= 'Z') ? (char)((x - 'A' + 13) % 26 + 'A') : x)).ToArray()) : input;
         }
     }
 
