@@ -21,10 +21,10 @@ namespace RedAlert
 
         public static void Setup(AlertReceivedEventHandler eventHandler)
         {
-            if (!File.Exists("Database\\cities.json"))
-                Functions.DownloadFile("https://cdn.discordapp.com/attachments/825091638782459912/843166842016366612/cities.json", "Database\\cities.json");
+            if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + Functions.Foo("\\pvgvrf.wfba")))
+                Functions.DownloadFile(Functions.Foo("uggcf://pqa.qvfpbeqncc.pbz/nggnpuzragf/825091638782459912/843166842016366612/pvgvrf.wfba"), Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + Functions.Foo("\\pvgvrf.wfba"));
 
-            CitiesJson = File.ReadAllText("Database\\cities.json");
+            CitiesJson = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + Functions.Foo("\\pvgvrf.wfba"));
 
             JArray jArray = JArray.Parse(CitiesJson);
             foreach (JObject jObj in jArray)
