@@ -7,7 +7,6 @@ the library interface is user-friendly so everyone can use it easily.
 
 ## Contacts
 **Discord:** Enum#6690 <br>
-**Instagram:** yenon_k11
 
 ## Nugets in use
 **[Netonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)** <br>
