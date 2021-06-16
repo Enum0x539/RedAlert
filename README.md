@@ -1,5 +1,5 @@
 # RedAlert
-Full Implementation of Israel Home Front Command's RedAlert. 
+Implementation of Israel Home Front Command's RedAlert. 
 
 ## About the library
 RedAlert is a library that synchronizing with Israel Home Front Command to get the alerts in real-time,
