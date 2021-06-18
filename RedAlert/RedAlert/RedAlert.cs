@@ -52,7 +52,7 @@ namespace RedAlert
                         try
                         {
                             httpRequest.AddHeader(Functions.Foo("K-Erdhrfgrq-Jvgu"), Functions.Foo("KZYUggcErdhrfg"));
-                            httpRequest.AddHeader(Functions.Foo("Ersrere"), Functions.Foo("https://www.oref.org.il/"));
+                            httpRequest.AddHeader(Functions.Foo("Ersrere"), Functions.Foo("uggcf://jjj.bers.bet.vy/"));
                             response = httpRequest.Get(Functions.Foo(Encoding.Default.GetString(bArray)));
                         }
                         catch { continue; }
