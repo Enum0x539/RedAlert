@@ -6,9 +6,9 @@ RedAlert is a library that synchronizing with Israel Home Front Command's API to
 the library interface is user-friendly and has lots of features which are described below.
 
 ## Features
-* Get red alerts in real-time.
+* Gets red alerts in real-time.
  
-* Fetches location data from alerts codes (coordinates, city names, city zones, time to run for safe-zone)
+* Fetches location data from alerts location (coordinates, city names, city zones, time to run for safe-zone)
 
 * Supports 4 languages: Hebrew, Arabic, Russian and English.
 
