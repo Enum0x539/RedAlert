@@ -20,7 +20,7 @@ the library interface is user-friendly and has lots of features which are descri
 ```cs
 using RedAlert;
 
-static void Main()
+private static void Main()
 {
     //Creating the event subscriber
     Alerts alerts = new Alerts();
@@ -31,7 +31,6 @@ private static void Alerts_OnAlertReceived(List<AlertCityData> cities)
 {
     //With every new alert, this function will get to execute.
     
-    //Converting the time to the universal time and adds 3 hours to get the current time in Israel.
     DateTime occurence = cities[0].Timestamp;
     List<string> zones = new List<string>();
     List<string> descriptions = new List<string>();
