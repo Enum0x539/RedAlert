@@ -1,33 +1,38 @@
-# RedAlert
-Implementation of Israel Home Front Command's RedAlert. 
+# Description
+Implementation of Israel Home Front Command's (AKA "Pikud Ha Oref") public API, gets real-time alerts about rockets lunched from Gaza-strip into Israel's territory. 
 
 ## About the library
-RedAlert is a library that synchronizing with Israel Home Front Command to get the alerts in real-time,
-the library interface is user-friendly so everyone can use it easily.
+RedAlert is a library that synchronizing with Israel Home Front Command's API to get the alerts in real-time,
+the library interface is user-friendly and have lots of features which are described below.
 
-## Contacts
-**Discord:** Enum#6690 <br>
+## Features
+* Get red-alerts in real-time.
+ 
+* Fetches location data from alerts codes (coordinates, city names, city zones, time to run for safe-zone)
 
-## Nugets in use
-**[Netonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)** <br>
-**[Leaf.xNet](https://github.com/csharp-leaf/Leaf.xNet)**
+* Supports 4 languages: Hebrew, Arabic, Russian and English.
 
-## Exmaple code
+* Generates random coordinates within the given coordinates.
+
+* Gets the picture of Israel with markers over the alerts location with path lines.
+
+## Example code
 ```cs
 using RedAlert;
 
 static void Main()
 {
     //Creating the event subscriber
-    Alerts.Setup(RedAlertReceived);
+    Alerts alerts = new Alerts();
+    alerts.OnAlertReceived += Alerts_OnAlertReceived;
 }
 
-private static void RedAlertReceived(List<AlertCityData> cities)
+private static void Alerts_OnAlertReceived(List<AlertCityData> cities)
 {
     //With every new alert, this function will gets to execute.
     
     //Converting the time to the universal time and adds 3 hours to get the current time in Israel.
-    DateTime occurence = DateTime.Now.ToUniversalTime().AddHours(3);
+    DateTime occurence = cities[0].Timestamp;
     List<string> zones = new List<string>();
     List<string> descriptions = new List<string>();
     List<string> result = new List<string>();
@@ -60,6 +65,14 @@ private static void RedAlertReceived(List<AlertCityData> cities)
     Console.WriteLine($"New Alert! [{occurence.ToShortDateString()}] {occurence.ToShortTimeString()}:\n" + string.Join("\n\n", result));
 }
 ```
+## Information
+1) This library will only work for people which their locations is in Israel, because Israel Home Front Command (Pikud Ha Oref) accepts only the requests from Israel.<br>
+2) The enemy cannot exploit or use this library for bad usage because it does not contain any private sensitive information, we use the public API of Israel Home Front Command (Pikud Ha Oref) <br>
+3) This library is very simple to use and have very good performance
 
- # Educational Purposes
+## Dependencies
+[Newtonsoft.Json 13.0.1](https://www.nuget.org/packages/Newtonsoft.Json/)<br><br>Installation:<br>
+```Install-Package Newtonsoft.Json -Version 13.0.1```
+
+## Educational Purposes
 "Copyright Disclaimer Under Section 107 of the Copyright Act 1976, allowance is made for "fair use" for purposes such as criticism, comment, news reporting, teaching scholarship, and research. Fair use is a use permitted by copyright statutes that might otherwise be infringing. Non-profit, educational, or personal use tips the balance in favor of fair use."
