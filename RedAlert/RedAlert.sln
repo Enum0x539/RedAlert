@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedAlert", "RedAlert\RedAlert.csproj", "{AE333B09-BA5A-48E3-96D0-2B5B3749520F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE333B09-BA5A-48E3-96D0-2B5B3749520F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE333B09-BA5A-48E3-96D0-2B5B3749520F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE333B09-BA5A-48E3-96D0-2B5B3749520F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE333B09-BA5A-48E3-96D0-2B5B3749520F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A627B391-4EDA-4603-9278-0C0BADB91E9B}
+	EndGlobalSection
+EndGlobal
