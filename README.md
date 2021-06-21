@@ -29,14 +29,14 @@ private static void Main()
 
 private static void Alerts_OnAlertReceived(List<AlertCityData> cities)
 {
-    //With every new alert, this function will get to execute.
+    //With every new alert, this function will execute.
     
     DateTime occurence = cities[0].Timestamp;
     List<string> zones = new List<string>();
     List<string> descriptions = new List<string>();
     List<string> result = new List<string>();
 
-    //Adding the last alert zones into a list.
+    //Sorting the cities zones
     foreach (AlertCityData city in cities)
     {
         if (!zones.Contains(city.Zone_he))
