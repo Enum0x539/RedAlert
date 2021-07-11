@@ -66,11 +66,12 @@ namespace RedAlert
 
                     if (response.StatusCode != HttpStatusCode.OK)
                         continue;
-
-                    if (String.IsNullOrEmpty(new StreamReader(response.GetResponseStream()).ReadToEnd().ToString()))
+                    
+                    string responseStr = new StreamReader(response.GetResponseStream()).ReadToEnd().ToString();
+                    if (String.IsNullOrEmpty(responseStr))
                         continue;
 
-                    JObject jObject = JObject.Parse(Encoding.UTF8.GetString(Encoding.Default.GetBytes(new StreamReader(response.GetResponseStream()).ReadToEnd())));
+                    JObject jObject = JObject.Parse(Encoding.UTF8.GetString(Encoding.Default.GetBytes(responseStr)));
                     if (jObject["title"].ToString() != "התרעות פיקוד העורף")
                         continue;
 
@@ -159,7 +160,7 @@ namespace RedAlert
         public string Zone_ru { get; private set; }
         public string Zone_ar { get; private set; }
 
-        public int Countdown { get; private set; }
+        public int Countdown  { get; private set; }
         public string Time_he { get; private set; }
         public string Time_en { get; private set; }
         public string Time_ru { get; private set; }
