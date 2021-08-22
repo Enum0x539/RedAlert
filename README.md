@@ -1,3 +1,4 @@
+### [Part of the code is obfuscated to keep the API safe as possible, even though its public API you need permission.](https://www.idf.il/%D7%90%D7%AA%D7%A8%D7%99%D7%9D/%D7%A4%D7%99%D7%A7%D7%95%D7%93-%D7%94%D7%A2%D7%95%D7%A8%D7%A3/%D7%A9%D7%99%D7%A0%D7%95%D7%99-%D7%91%D7%94%D7%A8%D7%A9%D7%90%D7%95%D7%AA-%D7%94%D7%92%D7%99%D7%A9%D7%94-%D7%9C%D7%A7%D7%95%D7%91%D7%A5-%D7%94%D7%94%D7%AA%D7%A8%D7%A2%D7%95%D7%AA-%D7%91%D7%90%D7%AA%D7%A8-%D7%A4%D7%99%D7%A7%D7%95%D7%93-%D7%94%D7%A2%D7%95%D7%A8%D7%A3/)
 # Description
 Implementation of Israel Home Front Command's (AKA "Pikud Ha Oref") public API, gets real-time alerts about rockets lunched from Gaza-strip into Israel's territory. 
 
