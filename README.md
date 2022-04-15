@@ -30,7 +30,7 @@ private static void Main()
 
 private static void Alerts_OnAlertReceived(List<AlertCityData> cities)
 {
-    //With every new alert, this function will execute.
+    //With every new alert, this function will executed.
     
     DateTime occurence = cities[0].Timestamp;
     List<string> zones = new List<string>();
