@@ -65,34 +65,6 @@ private static void Alerts_OnAlertReceived(List<AlertCityData> cities)
     Console.WriteLine($"New Alert! [{occurence.ToShortDateString()}] {occurence.ToShortTimeString()}:\n" + string.Join("\n\n", result));
 }
 ```
-
-## Short documentation
-| Function             | Parameters  |  Description | Returns       |
-| -----------          |                                                           ----------- | -----------  | -----------   |
-| GetMapPhoto()        |  PathColorHex, Coordinates      | Retrieves the bytes of the given coordinates image from Google Maps API with a path-line from Gaza-strip.        | byte array         |
-| RandomCoordinates()  | Coordinates        | Generates random coordinates within the given coordinates.         | Coordinates         |
-
----
-**AlertCityData**: <br>
-Name_he - returns the name of the alert city in Hebrew. <br>
-Name_en - returns the name of the alert city in English. <br>
-Name_ru - returns the name of the alert city in Russian. <br>
-Name_ar - returns the name of the alert city in Arabic. <br>
- <br>
-Zone_he - returns the name of the alert zone in Hebrew. <br>
-Zone_en - returns the name of the alert zone in English. <br>
-Zone_ru - returns the name of the alert zone in Russian. <br>
-Zone_ar - returns the name of the alert zone in Arabic. <br>
- <br>
-Countdown - returns the time to ran to into safe-zone.  <br>
-Time_he - returns the time to ran to into safe-zone in Hebrew. <br>
-Time_en - returns the time to ran to into safe-zone in English. <br>
-Time_ru - returns the time to ran to into safe-zone in Russian. <br>
-Time_ar - returns the time to ran to into safe-zone in Arabic. <br>
- <br>
-Timestamp - returns the timestamp of the alert in "Israel Standard Time". <br>
-Coordinates - returns the coordinates of the alert.
-
 ## Information
 1) This library will only work for people whose locations is in Israel because Israel Home Front Command (Pikud Ha Oref) accepts only the requests from Israel.<br>
 2) The enemy cannot exploit or use this library for bad usage because it does not contain any private sensitive information, we use the public API of Israel Home Front Command (Pikud Ha Oref) <br>
