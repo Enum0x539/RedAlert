@@ -130,35 +130,6 @@ namespace RedAlert
             };
             thread.Start();
         }
-
-        /// <summary>
-        /// Retrieves a static Google Maps bitmap highlighting alert cities.
-        /// </summary>
-        /// <param name="cities">List of alert cities to mark on the map.</param>
-        /// <returns>A Bitmap image with markers on alert locations.</returns>
-        public static Bitmap GetMapPhoto(List<AlertCityData> cities)
-        {
-            if (cities == null || cities.Count == 0)
-                throw new ArgumentException("Cities list cannot be null or empty.", nameof(cities));
-
-            // Build the coordinates parameter string for Google Maps markers
-            var coords = string.Join("|", cities.Select(c => $"{c.Coordinates.Latitude},{c.Coordinates.Longitude}"));
-
-            // Construct the Google Static Maps API URL
-            string url = $"http://maps.googleapis.com/maps/api/staticmap?" +
-                         $"center={cities[0].Name_en}&zoom=11&size=640x533&maptype=roadmap&" +
-                         $"markers=color:red%7Clabel:S%7C{coords}&language=he&sensor=true&" +
-                         "key=AIzaSyAihoCYFho8rqJwnBjxzBlk56SR0uL7_Ks"; // Replace with your key
-
-            using (WebClient wc = new WebClient())
-            {
-                byte[] data = wc.DownloadData(url);
-                using (MemoryStream ms = new MemoryStream(data))
-                {
-                    return new Bitmap(ms);
-                }
-            }
-        }
     }
 
     /// <summary>
