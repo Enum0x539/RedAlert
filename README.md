@@ -1,83 +1,85 @@
 # Description
-Implementation of Israel Home Front Command's (AKA "Pikud Ha Oref") public API, gets real-time alerts about rockets lunched from Gaza-strip into Israel's territory. 
+Real-time rocket alert integration with Israel Home Front Command’s public API (Pikud HaOref).
+Because waiting for rocket sirens is so last century… 💥🚀
 
 ## About the library
-RedAlert is a library that synchronizing with Israel Home Front Command's API to get the alerts in real-time,
-the library interface is user-friendly and has lots of features which are described below.
+RedAlert is a C# library that continuously syncs with Israel Home Front Command’s live alert API to fetch rocket and other emergency alerts across Israel’s territory — not just Gaza-strip launches.
+It offers an easy-to-use event-driven interface with multi-language support and handy mapping capabilities to visualize affected zones.
 
 ## Features
-* Gets red alerts in real-time.
- 
-* Fetches location data from alerts location (coordinates, city names, city zones, time to run for safe-zone)
+🚨 Real-time retrieval of Israel Home Front Command alerts
 
-* Supports 4 languages: Hebrew, Arabic, Russian and English.
+🌍 Supports multiple launch zones, not limited to Gaza — because rockets love to surprise
 
-* Gets the picture of Israel with markers over the alert's location with path lines.
+📍 Provides detailed location info (coordinates, city names, alert zones)
 
-## Example code
+🌐 Localization for Hebrew, Arabic, Russian, and English
+
+🔄 Runs a lightweight background thread for continuous updates and event notifications
+
+## How to Use
 ```cs
 using RedAlert;
+using System;
+using System.Collections.Generic;
 
-private static void Main()
+class Program
 {
-    //Creating the event subscriber
-    Alerts alerts = new Alerts();
-    alerts.OnAlertReceived += Alerts_OnAlertReceived;
-}
-
-private static void Alerts_OnAlertReceived(List<AlertCityData> cities)
-{
-    //With every new alert, this function will executed.
-    
-    DateTime occurence = cities[0].Timestamp;
-    List<string> zones = new List<string>();
-    List<string> descriptions = new List<string>();
-    List<string> result = new List<string>();
-
-    //Sorting the cities zones
-    foreach (AlertCityData city in cities)
+    static void Main()
     {
-        if (!zones.Contains(city.Zone_he))
-            zones.Add(city.Zone_he);
+        var alerts = new Alerts();
+        alerts.OnAlertReceived += Alerts_OnAlertReceived;
+
+        Console.WriteLine("Listening for alerts... Stay safe out there! 🚦");
+        Console.ReadKey();
     }
 
-    //Sorting all the alerts, every alert into his zone.
-    for (int i = 0; i < zones.Count; ++i)
+    private static void Alerts_OnAlertReceived(List<AlertCityData> cities)
     {
-        descriptions.Add("");
-        foreach (AlertCityData city in cities)
+        if (cities == null || cities.Count == 0) return;
+
+        DateTime alertTime = cities[0].Timestamp;
+        var zones = new List<string>();
+        var descriptions = new List<string>();
+        var results = new List<string>();
+
+        foreach (var city in cities)
+            if (!zones.Contains(city.Zone_he))
+                zones.Add(city.Zone_he);
+
+        for (int i = 0; i < zones.Count; i++)
         {
-            if (city.Zone_he != zones[i])
-                continue;
-
-            descriptions[i] += $"{city.Name_he} - ({city.Time_he})\n";
+            descriptions.Add("");
+            foreach (var city in cities)
+                if (city.Zone_he == zones[i])
+                    descriptions[i] += $"{city.Name_he} - ({city.Time_he})\n";
         }
+
+        for (int i = 0; i < zones.Count; i++)
+            results.Add($"{zones[i]}\n\n{descriptions[i]}");
+
+        Console.WriteLine($"🔥 New Alert! [{alertTime.ToShortDateString()} {alertTime.ToShortTimeString()}]:\n" +
+                          string.Join("\n\n", results));
     }
-
-    //Adding the results into a list for easier use.
-    for (int i = 0; i < zones.Count; ++i)
-        result.Add($"{zones[i]}\n\n{descriptions[i]}");
-
-    //Printing the alerts with their information
-    Console.WriteLine($"New Alert! [{occurence.ToShortDateString()}] {occurence.ToShortTimeString()}:\n" + string.Join("\n\n", result));
 }
 ```
 ## Information
-1) This library will only work for people whose locations is in Israel because Israel Home Front Command (Pikud Ha Oref) accepts only the requests from Israel.<br>
-2) The enemy cannot exploit or use this library for bad usage because it does not contain any private sensitive information, we use the public API of Israel Home Front Command (Pikud Ha Oref) <br>
-3) This library is very simple to use and have very good performance
+🧠 Performance optimized: Light background polling thread keeps your CPU chill while staying alert-ready.
+
+🤖 AI-free zone: Because sometimes the best algorithms are just good ol’ C# and coffee ☕.
 
 ## Dependencies
 [Newtonsoft.Json 13.0.1](https://www.nuget.org/packages/Newtonsoft.Json/)<br><br>Installation:<br>
 ```Install-Package Newtonsoft.Json -Version 13.0.1```
 
 ## This project is under Berkeley Software Distribution (BSD) license.
-* The source code doesn’t need to be public when a distribution of the software is made.
-* Modifications to the software can be released under any license.
-* Changes made to the source code may not be documented.
-* It offers no explicit position on patent usage.
-* The license and copyright notice must be included in the documentation of the compiled version of the source code (as opposed to only in the source code).
-* The BSD 3-clause states that the names of the author and contributors can’t be used to promote products derived from the software without permission.
+    Use, modify, and distribute freely (including commercial use)
 
-## Educational Purposes
-"Copyright Disclaimer Under Section 107 of the Copyright Act 1976, allowance is made for "fair use" for purposes such as criticism, comment, news reporting, teaching scholarship, and research. Fair use is a use permitted by copyright statutes that might otherwise be infringing. Non-profit, educational, or personal use tips the balance in favor of fair use."
+    No obligation to open-source your modifications
+
+    Don’t use authors’ names to promote derived products without permission
+
+    Must include license and copyright notices in distributions
+
+Disclaimer
+"Fair use is real — this project is for education, safety, and curiosity. No rockets were harmed in making this code."
